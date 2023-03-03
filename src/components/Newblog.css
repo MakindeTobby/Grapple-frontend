@@ -1,0 +1,99 @@
+.create {
+    margin: 0 auto;
+    text-align: center;
+    max-width: 50%;
+    padding: 20px;
+    background-color:  antiquewhite;
+    border-radius: 8px;
+    margin-top: 60px;
+  }
+  #move{
+    margin-right: 800px;
+    margin-top: -400px;
+  }
+  
+  .create label {
+    text-align: left;
+    display: block;
+    /* color: #217254; */
+  }
+  
+  .create h2 {
+    font-size: 20px;
+    color: #f1356d;
+    margin-bottom: 30px;
+  }
+  
+  .create button {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .create input,
+  .create textarea,
+  .create select {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: block;
+  }
+  
+  .create button {
+    background-color: #f1356d;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  /* CREATEImage NEW BLOG FORM*/
+  
+  .createImage {
+    margin: 0 auto;
+    text-align: center;
+    max-width: 50%;
+    padding: 20px;
+    background-color: #dceffb;
+    border-radius: 8px;
+  }
+  
+  
+  .createImage label {
+    text-align: left;
+    display: block;
+    /* color: #217254; */
+  }
+  
+  .createImage h2 {
+    font-size: 20px;
+    color: #35a0f1;
+    margin-bottom: 30px;
+  }
+  
+  .createImage button {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .createImage input,
+  .createImage textarea,
+  .createImage select {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: block;
+  }
+  
+  .createImage button {
+    background-color: #35a0f1;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
