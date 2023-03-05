@@ -1,10 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Autophone from "../../components/AutoPhone";
-import Phone from "../../components/Phone";
-import { useAuth } from "../../context";
+import { useAuth } from "../context";
 import { useState, useEffect } from "react";
-import http from "../Api/http";
+import http from "./Api/http";
 
 
 const Register = () => {
@@ -14,46 +12,46 @@ const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [phoneNumber, setphoneNumber] = useState('')
-    const {user} = useAuth()
+    const { user } = useAuth()
 
     const navigate = useNavigate()
 
-    useEffect(()=>{
-		// if (user) {
-		// 	navigate(-1)
-		// }
-	},[])
+    useEffect(() => {
+        // if (user) {
+        // 	navigate(-1)
+        // }
+    }, [])
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        
+
         // toast.success('wow this works')
-        const newSign ={
+        const newSign = {
             FirstName: firstName,
             SurName: surName,
             Email: email,
             PhoneNumber: phoneNumber,
             Password: password,
-          
+
         }
         try {
-			setLoading(true)
-            const {data} = await http.post("/doctorSignup", newSign)
+            setLoading(true)
+            const { data } = await http.post("/doctorSignup", newSign)
             console.log(data);
             if (data.errors) {
-             console.log(errors);
-            }else{
+                console.log(errors);
+            } else {
                 localStorage.setItem("jwt", data.token)
                 localStorage.setItem("email", data.email)
                 // window.location.href = `/verify-otp?email=${data.email}`;
                 window.location.href = `/verifyotp`;
             }
         } catch (error) {
-			return console.log(error);
+            return console.log(error);
         }
-		finally{
-			setLoading(false)
-		  }
+        finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -71,47 +69,47 @@ const Register = () => {
                     <form className="bg-grey-lightest px-10 py-8">
                         <div className="relative mb-4">
                             <input type="text" id="floating_outlined"
-                            onChange={e => setFirstName(e.target.value)}
+                                onChange={e => setFirstName(e.target.value)}
                                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                             <label htmlFor="floating_outlined"
                                 className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
-                                FirstName</label>
+                                Firstname</label>
                         </div>
                         <div className="relative mb-4">
                             <input type="text" id="floating_outlined"
-                            onChange={e => setSurName(e.target.value)}
-                            className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                onChange={e => setSurName(e.target.value)}
+                                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                             <label htmlFor="floating_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
-                                 SurName</label>
+                                Surname</label>
                         </div>
                         <div className="relative mb-4">
-                            <input type="email" id="floating_outlined" 
-                            onChange={e => setEmail(e.target.value)}
-                            className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                            <input type="email" id="floating_outlined"
+                                onChange={e => setEmail(e.target.value)}
+                                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                             <label htmlFor="floating_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
-                                 Email</label>
+                                Email</label>
                         </div>
                         <div className="relative mb-4">
                             {/* <Phone /> */}
                             <input type="text" id="floating_outlined"
-                            onChange={e => setphoneNumber(e.target.value)}
-                             className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                onChange={e => setphoneNumber(e.target.value)}
+                                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                             <label htmlFor="floating_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Phone Number</label>
-                        
+
                         </div>
 
                         {/* <Autophone /> */}
 
                         <div className="relative mb-4">
                             <input type="password" id="floating_outlined"
-                            onChange={e => setPassword(e.target.value)}
+                                onChange={e => setPassword(e.target.value)}
                                 className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
                             <label htmlFor="floating_outlined" className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                                 Password</label>
                         </div>
                         {/* <Autophone /> */}
 
-                        
+
                         {/* <div>
                             
                         </div> */}

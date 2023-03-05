@@ -4,15 +4,15 @@ import Notifications from './header/Notifications';
 import Help from './header/Help';
 import UserMenu from './header/UserMenu';
 import jwtDecode from "jwt-decode"
-import setAuthToken from '../pages/Util/setAuthToken';
+import setAuthToken from '../Auth/Util/setAuthToken';
 
 
 let logUser
 
 if (localStorage.jwt) {
-    const jwt = localStorage.getItem("jwt")
-    setAuthToken(jwt)
-   logUser = jwtDecode(jwt)
+  const jwt = localStorage.getItem("jwt")
+  setAuthToken(jwt)
+  logUser = jwtDecode(jwt)
 }
 
 function Header({
@@ -68,7 +68,7 @@ function Header({
             {/*  Divider */}
             <hr className="w-px h-6 bg-slate-200 mx-3" />
             <UserMenu user={user} />
-    
+
           </div>
 
         </div>

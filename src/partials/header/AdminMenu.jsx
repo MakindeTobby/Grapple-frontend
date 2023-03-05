@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Transition from '../../utils/Transition';
 
-import UserAvatar from '../../images/user-avatar-32.png';
-import http from '../../pages/Api/http';
+import UserAvatar from '../../images/user-36-08.jpg';
+import http from '../../Auth/Api/http';
 
-function AdminMenu({user}) {
+function AdminMenu({ user }) {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -13,26 +13,26 @@ function AdminMenu({user}) {
   const dropdown = useRef(null);
   // const [id, setId] = useState(Number(user.DoctorId));
   // console.log(id);
-  const logout = async (e)=>{
+  const logout = async (e) => {
     e.preventDefault();
 
-  //   const out ={
-  //     DoctorId: id
-  // }
-     try {
-      const {data} = await http.post('/logout')
+    //   const out ={
+    //     DoctorId: id
+    // }
+    try {
+      const { data } = await http.post('/logout')
       // console.log(out);
       if (data.errors) {
-         console.log(errors);
-      }else{
+        console.log(errors);
+      } else {
         localStorage.removeItem("token");
         localStorage.removeItem("email");
-         window.location = "/admin-auth"
-         console.log("successful log");
+        window.location = "/admin-auth"
+        console.log("successful log");
       }
-     } catch (error) {
+    } catch (error) {
       console.log(error);
-     }
+    }
   }
   // close on click outside
   useEffect(() => {
@@ -65,7 +65,7 @@ function AdminMenu({user}) {
       >
         <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
         <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm font-medium group-hover:text-slate-800">{user.username}</span>
+          <span className="truncate ml-2 text-sm  font-bold uppercase group-hover:text-slate-800">{user.username}</span>
           <svg className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
           </svg>
@@ -89,7 +89,7 @@ function AdminMenu({user}) {
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
             <div className="font-medium text-slate-800">Grapple</div>
-            <div className="text-xs text-slate-500 italic">{user.username}</div>
+            <div className="text-xs text-slate-500 ">{user.username}</div>
           </div>
           <ul>
             <li>
@@ -98,14 +98,14 @@ function AdminMenu({user}) {
                 to="/"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-               My Profile
+                My Profile
               </Link>
             </li>
             <li>
-           
+
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
-               
+
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <button onClick={logout}>Sign Out</button>

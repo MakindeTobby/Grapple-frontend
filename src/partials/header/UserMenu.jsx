@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import Transition from '../../utils/Transition';
 
 import UserAvatar from '../../images/user-avatar-32.png';
-import http from '../../pages/Api/http';
+import http from '../../Auth/Api/http';
 
-function UserMenu({user}) {
+function UserMenu({ user }) {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -14,26 +14,26 @@ function UserMenu({user}) {
   const [id, setId] = useState(Number(user.DoctorId));
   // console.log(id);
   localStorage.setItem('DocId', id)
-  const logout = async (e)=>{
+  const logout = async (e) => {
     e.preventDefault();
 
-    const out ={
+    const out = {
       DoctorId: id
-  }
-     try {
-      const {data} = await http.post('/logout', out)
+    }
+    try {
+      const { data } = await http.post('/logout', out)
       console.log(out);
       if (data.errors) {
-         console.log(errors);
-      }else{
+        console.log(errors);
+      } else {
         localStorage.removeItem("jwt");
         localStorage.removeItem("email");
-         window.location = "/"
-         console.log("successful log");
+        window.location = "/"
+        console.log("successful log");
       }
-     } catch (error) {
+    } catch (error) {
       console.log(error);
-     }
+    }
   }
   // close on click outside
   useEffect(() => {
@@ -99,14 +99,14 @@ function UserMenu({user}) {
                 to="/submit"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-               My Profile
+                My Profile
               </Link>
             </li>
             <li>
-           
+
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
-               
+
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <button onClick={logout}>Sign Out</button>

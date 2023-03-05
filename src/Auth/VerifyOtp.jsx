@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 // import { useCompanyContext } from "../../context";
-import http from "../Api/http";
+import http from "./Api/http";
 
-    
+
 const VerifyOtp = () => {
     // const { email, companyId } = useCompanyContext();
     const [otp, setOtp] = useState(new Array(6).fill(""));
@@ -29,7 +29,7 @@ const VerifyOtp = () => {
     };
     const email = localStorage.getItem("email")
     const handleSubmit = async (event) => {
-       
+
         const postData = {
             Email: email,
             otp: otp.join('')
@@ -41,7 +41,7 @@ const VerifyOtp = () => {
             try {
                 setLoading(true)
                 // const res = await axios.post(' http://profitmax-001-site8.ctempurl.com/api/Account/post_otp', postData)
-                const {data} = await http.post("/verify-otp", postData)
+                const { data } = await http.post("/verify-otp", postData)
                 console.log(data);
                 toast.success(data.response.data.message)
                 setLoading(false)

@@ -7,10 +7,10 @@ import { CiSettings, CiLocationOn, CiUser } from 'react-icons/ci';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import SidebarLinkGroup from './SidebarLinkGroup';
-import http from '../pages/Api/http';
+import http from '../Auth/Api/http';
 
-function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
- 
+function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
+
 
   const trigger = useRef(null);
   const sidebar = useRef(null);
@@ -19,25 +19,25 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
   const location = useLocation();
   const { pathname } = location;
 
-  const logout = async (e)=>{
+  const logout = async (e) => {
     e.preventDefault();
 
-  //   const out ={
-  //     DoctorId: id
-  // }
-     try {
-      const {data} = await http.post('/logout')
+    //   const out ={
+    //     DoctorId: id
+    // }
+    try {
+      const { data } = await http.post('/logout')
       console.log(out);
       if (data.errors) {
-         console.log(errors);
-      }else{
+        console.log(errors);
+      } else {
         localStorage.removeItem("token");
         window.location = "/adminDashboard"
         console.log("successful log");
       }
-     } catch (error) {
+    } catch (error) {
       console.log(error);
-     }
+    }
   }
 
   const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');
@@ -77,7 +77,7 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
     <div>
       {/* Sidebar backdrop (mobile only) */}
       <div
-        className={`fixed inset-0 bg-blue-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         aria-hidden="true"
       ></div>
@@ -86,16 +86,16 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-blue-900 p-4 transition-all duration-200 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-64'
+        className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-slate-700 p-4 transition-all duration-200 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-64'
           }`}
       >
         {/* Sidebar header */}
         <div className="flex justify-between items-center mb-4 pr-3 sm:px-2">
-         
+
           <NavLink end to="/" className="block lg:hidden lg:sidebar-expanded:block 2xl:block">
-           <div style={{color:'white', fontWeight: "bolder", fontSize:'30px'}}>
-           <h1>Grapple</h1>
-           </div>
+            <div style={{ color: 'white', fontWeight: "bolder", fontSize: '30px' }}>
+              <h1>Grapple</h1>
+            </div>
             {/* <img src="/images/promax_logo 2.png" alt="logo" className='w-28' /> */}
           </NavLink>
           <div className=" hidden lg:inline-flex 2xl:hidden justify-end mt-auto">
@@ -176,7 +176,7 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
                 </h3>
               </div>
 
-           
+
 
               {/* Apointment List */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('inbox') && 'bg-slate-900'}`}>
@@ -239,7 +239,7 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
                   <div className="flex items-center">
                     <AiOutlineShoppingCart className="shrink-0 h-6 w-6" />
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                    Manage Setting
+                      Manage Setting
                     </span>
                   </div>
                 </NavLink>
@@ -256,7 +256,7 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
                   <div className="flex items-center">
                     <CiUser className="shrink-0 h-6 w-6" />
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                    Manage Team
+                      Manage Team
                     </span>
                   </div>
                 </NavLink>
@@ -300,7 +300,7 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
                               className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
                             >
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                               Inbox
+                                Inbox
                               </span>
                             </NavLink>
                           </li>
@@ -311,7 +311,7 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
                               className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
                             >
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                               Sent
+                                Sent
                               </span>
                             </NavLink>
                           </li>
@@ -322,19 +322,19 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
                               className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
                             >
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                               Trash
+                                Trash
                               </span>
                             </NavLink>
                           </li>
-                          
+
                         </ul>
                       </div>
                     </React.Fragment>
                   );
                 }}
               </SidebarLinkGroup>
- 
-                   {/* Manage Articles */}
+
+              {/* Manage Articles */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('campaigns') && 'bg-slate-900'}`}>
                 <NavLink
                   end
@@ -345,14 +345,14 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
                   <div className="flex items-center">
                     <BsBookmark className="shrink-0 h-6 w-6" />
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                    Manage Articles
+                      Manage Articles
                     </span>
                   </div>
                 </NavLink>
               </li>
 
-               {/* Account Setting */}
-               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('calendar') && 'bg-slate-900'}`}>
+              {/* Account Setting */}
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('calendar') && 'bg-slate-900'}`}>
                 <NavLink
                   end
                   to="/"
@@ -368,8 +368,8 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
                 </NavLink>
               </li>
 
-               {/* Security Setting */}
-               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('calendar') && 'bg-slate-900'}`}>
+              {/* Security Setting */}
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('calendar') && 'bg-slate-900'}`}>
                 <NavLink
                   end
                   to="/"
@@ -385,25 +385,24 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen, user }) {
                 </NavLink>
               </li>
 
-               {/* Logout */}
-               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('calendar') && 'bg-slate-900'}`}>
-                <NavLink
-                  end
-                  to="/adminDashboard"
+              {/* Logout */}
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('calendar') && 'bg-slate-900'}`}>
+                <button onClick={logout}
+
                   className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('calendar') && 'hover:text-slate-200'
                     }`}
-                > 
+                >
                   <div className="flex items-center">
-                    <BiArrowToRight onClick={logout} className="shrink-0 h-6 w-6" />
+                    <BiArrowToRight className="shrink-0 h-6 w-6" />
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                      <button onClick={logout}>
+                      <button >
                         LogOut
-                        </button>
+                      </button>
                     </span>
                   </div>
-                </NavLink>
+                </button>
               </li>
-             
+
             </ul>
           </div>
           {/* More group */}

@@ -3,16 +3,16 @@ import SearchModal from './header/SearchModal';
 import Notifications from './header/Notifications';
 import Help from './header/Help';
 import jwtDecode from "jwt-decode"
-import setAuthToken from '../pages/Util/setAuthToken';
+import setAuthToken from '../Auth/Util/setAuthToken';
 import AdminMenu from './header/AdminMenu';
 
 
 let logUser
 
 if (localStorage.token) {
-    const jwt = localStorage.getItem("token")
-    setAuthToken(jwt)
-   logUser = jwtDecode(jwt)
+  const jwt = localStorage.getItem("token")
+  setAuthToken(jwt)
+  logUser = jwtDecode(jwt)
 }
 
 function AdminHeader({

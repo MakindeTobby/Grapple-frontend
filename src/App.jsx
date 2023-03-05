@@ -10,17 +10,16 @@ import './css/style.css';
 import './charts/ChartjsConfig';
 
 // Import pages
-import Dashboard from './pages/Dashboard';
-import Login from './pages/Auth/Login';
-import Register from './pages/Auth/Register';
+import Dashboard from './modules/Doctor/Dashboard';
+import Register from './Auth/Register'
 import NotFound from './pages/Notfound';
-import Staffs from './pages/UserManagement/Staff';
-import AdminAuth from './pages/Auth/AdminRegister';
-import PrivateRoutes from './pages/Private/PrivateRoutes'
-import AppointmentList from './pages/Appointment/AppointmentList';
-import VerifyOtp from './pages/Auth/VerifyOtp';
-import AdminDashboard from './pages/AdminDashboard';
+import AdminAuth from './Auth/AdminLogin';
+import PrivateRoutes from './Private/PrivateRoutes'
+import AppointmentList from './modules/Doctor/Appointment/AppointmentList';
+import VerifyOtp from './Auth/VerifyOtp';
+import AdminDashboard from './modules/Admin/Dashboard';
 import Submit from './components/Submit';
+import Login from './Auth/Login';
 
 function App() {
 
@@ -40,7 +39,6 @@ function App() {
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/admin-auth" element={<AdminAuth />} />
         <Route exact path="/" element={<Login />} errorElement={<NotFound />} />
-        <Route exact path="/staffs" element={<Staffs />} />
         <Route exact path="/appointmentList" element={<AppointmentList />} />
         <Route exact path="/verifyotp" element={<VerifyOtp />} />
         <Route exact path="/adminDashboard" element={<AdminDashboard />} />
@@ -48,8 +46,8 @@ function App() {
         <Route exact path="*" element={<NotFound />} />
 
         <Route element={<PrivateRoutes />}>
-       <Route element={<Dashboard />} path='dashboard' />
-       </Route> 
+          <Route element={<Dashboard />} path='dashboard' />
+        </Route>
 
       </Routes>
     </>
