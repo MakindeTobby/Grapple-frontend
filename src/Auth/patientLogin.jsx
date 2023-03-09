@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 
-const Login = () => {
+const PatientLogin = () => {
     let navigate = useNavigate()
     const [email, setEmail] = useState('makindetobiloba9@gmail.com');
     const [password, setPassword] = useState('08106067323');
@@ -60,15 +60,13 @@ const Login = () => {
             console.log(data);
             if (data.errors) {
                 console.log(data.errors);
-                toast.success("Login Failed")
-
             } else {
                 window.location = "/dashboard"
                 toast.success("Login Successful")
                 localStorage.setItem("jwt", data.token)
             }
         } catch (error) {
-            return toast.error(error.response.data);
+            return console.log(error);
         }
         finally {
             setLoading(false)
@@ -97,6 +95,7 @@ const Login = () => {
                                     <br />
                                     <br />
 
+
                                     <Form
                                         errorss={errorss}
                                         email={email}
@@ -123,4 +122,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default PatientLogin;

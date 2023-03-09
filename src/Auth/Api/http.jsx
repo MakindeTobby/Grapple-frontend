@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://grapple.onrender.com"
+const baseURL = "https://grapple-production.up.railway.app"
 
 const http = axios.create({
     baseURL: baseURL,

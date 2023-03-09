@@ -1,16 +1,37 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { useEffect } from "react";
 
 const Form = ({ email, setEmail, password, setPassword, handleLogin, checked, setChecked, loading, errorss }) => {
     const [pwdVisible, setPwdVisible] = useState(false)
+    const [current, setCurrent] = useState("")
+    useEffect(() => {
+        setCurrent(window.location.pathname);
+    }, window.location.pathname);
 
     return (
         <div className="md:p-16  md:mx-6">
 
             <form >
-                <div className="flex justify-end mb-4"><select name="lang" className="border border-gray-300 rounded w-32 outline-none text-xs px-2 py-1">
-                    <option value="" hidden>English (US)</option></select></div>
+                <div className="flex justify-between mb-4">
+                    {/* <select name="lang" className="border border-gray-300 rounded w-32 outline-none text-xs px-2 py-1">
+                    <option value="" hidden>English (US)</option></select> */}
+                    <NavLink to={'/'} className={`${current === "/" && "bg-red-500  border-red-700"} bg-blue-500  border-blue-700  text-white font-bold py-2 px-4 border-b-4  rounded`}>
+                        Doctor
+                    </NavLink>
+
+                    <NavLink to={'/patient-login'} className={`${current === "/patient-login" && "bg-red-500  border-red-700"} bg-blue-500  border-blue-700  text-white font-bold py-2 px-4 border-b-4  rounded`}>
+                        Patient
+                    </NavLink>
+                    <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                        Pharm
+                    </button>
+
+
+                </div>
+
+
                 <h4 className="text-xl mb-4 mt-1 pb-1 font-bold"></h4>
 
                 <p className="mb-4 text-gray-400">Login to your account</p>

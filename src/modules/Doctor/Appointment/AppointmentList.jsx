@@ -70,9 +70,9 @@ function AppointmentList() {
         {/*  Site header */}
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <main>
-          <div className="px-4 sm:px-6 grid grid-cols-2 gap-4 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+          <div className="px-4 sm:px-6 grid h-[100vh] gap-4 lg:px-8 py-8 w-full  mx-auto">
 
-            <div className="AppointmentsCalendar">
+            <div className="AppointmentsCalendar h-[100vh]">
               <FullCalendar
                 ref={calendarRef}
                 // plugins={[dayGridPlugin, interactionPlugin]}
@@ -95,12 +95,12 @@ function AppointmentList() {
                 // }}
                 selectable={true}
               />
-              {eventTitle && <p>{eventTitle}</p>}
+              {/* {eventTitle && <p>{eventTitle}</p>} */}
             </div>
 
-            <div className="sm:flex sm:justify-between sm:items-center mb-20">
+            {/* <div className="sm:flex sm:justify-between sm:items-center mb-20">
               <DashboardCard08 />
-            </div>
+            </div> */}
 
           </div>
         </main>

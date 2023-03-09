@@ -40,7 +40,7 @@ const AdminAuth = () => {
         }
     }
     return (
-        <div className="w-full h-[100vh]  mx-auto lg:p-4 md:p-2 sm:p-0 bg-slate-700 border-2  " >
+        <div className="w-full h-[100vh]  mx-auto lg:p-4 md:p-2 sm:p-0 bg-slate-200 border-2  " >
             <div className="pt-32">
                 <div className="mb-2">
                     {/* <img src="/images/promax_logo 1.png" alt="" width={'10%'} /> */}

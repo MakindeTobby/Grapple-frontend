@@ -11,6 +11,32 @@ const VerifyOtp = () => {
     const [otp, setOtp] = useState(new Array(6).fill(""));
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
+    const [timeLeft, setTimeLeft] = useState(
+        Number(sessionStorage.getItem('remainingTime')) || 600
+    );
+
+    useEffect(() => {
+        const countdownTimer = setInterval(() => {
+            setTimeLeft(prevTime => {
+                const newTime = prevTime - 1;
+                sessionStorage.setItem('remainingTime', newTime.toString());
+                return newTime;
+            });
+        }, 1000);
+
+        return () => clearInterval(countdownTimer);
+    }, []);
+
+    useEffect(() => {
+        if (timeLeft === 0) {
+            sessionStorage.removeItem('remainingTime');
+        }
+    }, [timeLeft]);
+
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+
+
     const handleChange = (element, index) => {
         if (isNaN(element.value)) return false;
         setOtp([...otp.map((d, idx) => (idx === index) ? element.value : d)])
@@ -27,6 +53,7 @@ const VerifyOtp = () => {
         });
 
     };
+
     const email = localStorage.getItem("email")
     const handleSubmit = async (event) => {
 
@@ -43,9 +70,9 @@ const VerifyOtp = () => {
                 // const res = await axios.post(' http://profitmax-001-site8.ctempurl.com/api/Account/post_otp', postData)
                 const { data } = await http.post("/verify-otp", postData)
                 console.log(data);
-                toast.success(data.response.data.message)
+                toast.success(data.message)
+                navigate("/")
                 setLoading(false)
-                window.location.href = `/dashboard`
 
             } catch (error) {
                 toast.error(error.response.data.message)
@@ -62,10 +89,7 @@ const VerifyOtp = () => {
 
 
             <section className="relative z-10 py-[120px]">
-                <div className="flex w-full justify-center mb-12">
-                    <img src="/images/promax_logo 1.png" alt="" width={'10%'} />
 
-                </div>
                 <div className="container mx-auto">
                     <div className="-mx-4 flex">
                         <div className="w-full px-4">
@@ -74,8 +98,8 @@ const VerifyOtp = () => {
                                     Check your email for a code
                                 </h2>
                                 <h4 className="mb-4 text-[13px] font-semibold leading-tight text-black">
-                                    We've sent a 6-digit code to <span className="text-gray-500">email. </span>
-                                    The code expires shortly
+                                    We've sent a 6-digit code to <span className="text-gray-500">{email} </span>
+                                    The code expires in <span className="text-red-500 font-bold"> {minutes}:{seconds < 10 ? '0' : ''}{seconds}</span>
 
                                 </h4>
                                 <div className="flex gap-2 max-w-full justify-center">
@@ -119,6 +143,7 @@ const VerifyOtp = () => {
                                 <p className="mt-8 text-lg text-slate-800">
                                     Can't find your code? Check your spam folder.
                                 </p>
+
                             </div>
                         </div>
                     </div>

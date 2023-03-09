@@ -25,9 +25,9 @@ function AdminMenu({ user }) {
       if (data.errors) {
         console.log(errors);
       } else {
-        localStorage.removeItem("token");
+        localStorage.clear();
         localStorage.removeItem("email");
-        window.location = "/admin-auth"
+        window.location = "/admin"
         console.log("successful log");
       }
     } catch (error) {

@@ -20,6 +20,9 @@ import VerifyOtp from './Auth/VerifyOtp';
 import AdminDashboard from './modules/Admin/Dashboard';
 import Submit from './components/Submit';
 import Login from './Auth/Login';
+import SetupForm from './modules/Doctor/SetupForm';
+import AccountForm from './modules/Doctor/AccountForm';
+import PatientLogin from './Auth/patientLogin';
 
 function App() {
 
@@ -37,8 +40,9 @@ function App() {
 
         {/* <Route exact path="/dashboard" element={<Dashboard />} /> */}
         <Route exact path="/register" element={<Register />} />
-        <Route exact path="/admin-auth" element={<AdminAuth />} />
-        <Route exact path="/" element={<Login />} errorElement={<NotFound />} />
+        <Route exact path="/admin" element={<AdminAuth />} />
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/patient-login" element={<PatientLogin />} />
         <Route exact path="/appointmentList" element={<AppointmentList />} />
         <Route exact path="/verifyotp" element={<VerifyOtp />} />
         <Route exact path="/adminDashboard" element={<AdminDashboard />} />
@@ -47,6 +51,10 @@ function App() {
 
         <Route element={<PrivateRoutes />}>
           <Route element={<Dashboard />} path='dashboard' />
+          <Route element={<SetupForm />} path='setup' />
+          <Route element={<AccountForm />} path='account-form' />
+
+
         </Route>
 
       </Routes>

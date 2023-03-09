@@ -1,17 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Transition from '../../utils/Transition';
 
-import UserAvatar from '../../images/user-avatar-32.png';
+import UserAvatar from '../../images/user-36-07.jpg';
 import http from '../../Auth/Api/http';
+import { toast } from 'react-toastify';
+import { ThemeContext } from '../../context';
 
 function UserMenu({ user }) {
+  const { docUser } = useContext(ThemeContext);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
   const dropdown = useRef(null);
-  const [id, setId] = useState(Number(user.DoctorId));
+  const [id, setId] = useState(Number(docUser.DoctorId));
   // console.log(id);
   localStorage.setItem('DocId', id)
   const logout = async (e) => {
@@ -29,7 +32,7 @@ function UserMenu({ user }) {
         localStorage.removeItem("jwt");
         localStorage.removeItem("email");
         window.location = "/"
-        console.log("successful log");
+        toast("Logout successful")
       }
     } catch (error) {
       console.log(error);
@@ -66,7 +69,7 @@ function UserMenu({ user }) {
       >
         <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
         <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm font-medium group-hover:text-slate-800">{user.Role}</span>
+          <span className="truncate ml-2 text-sm font-medium group-hover:text-slate-800">{docUser.Role} {docUser.FirstName}</span>
           <svg className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
           </svg>
@@ -90,7 +93,7 @@ function UserMenu({ user }) {
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
             <div className="font-medium text-slate-800">Grapple</div>
-            <div className="text-xs text-slate-500 italic">{user.Role}</div>
+            <div className="text-xs text-slate-500 ">{docUser.Role}</div>
           </div>
           <ul>
             <li>
