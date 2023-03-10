@@ -36,7 +36,7 @@ const ThankYou = () => {
                     <div className="-mx-4 flex">
                         <div className="w-full px-4">
                             <div className="mx-auto max-w-[80%] text-center">
-                                <h2 className="mb-4 text-[20px] font-bold leading-none text-cyan-700 sm:text-[60px] md:text-[50px]">
+                                <h2 className="mb-4 text-3xl font-bold leading-none text-cyan-700 sm:text-[60px] md:text-[50px]">
                                     Thank You
                                 </h2>
                                 <h4 className="mb-4 text-[13px] font-semibold leading-tight text-black">
