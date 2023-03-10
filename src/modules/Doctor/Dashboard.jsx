@@ -57,15 +57,22 @@ function Dashboard() {
                     {/* Welcome banner */}
                     <WelcomeBanner user={docUser} />
 
-                    <div className='text-center'>
-                        <h1 className='text-3xl mb-5 font-bold'>To get started click the button below</h1>
-                        <Link
-                            to={'/account-form'}
+                    {
+                        docUser.Status === 0 ?
+                            <div className='text-center'>
+                                <h1 className='text-3xl mb-5 font-bold'>To get started click the button below</h1>
+                                <Link
+                                    to={'/account-form'}
 
-                            className="inline-block px-6 py-4  text-white font-medium  leading-tight rounded shadow-md bg-blue-900 hover:bg-blue-800 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out mb-3" type="button" data-mdb-ripple="true" data-mdb-ripple-color="light">
-                            CLICK ME
-                        </Link>
-                    </div>
+                                    className="inline-block px-6 py-4  text-white font-medium  leading-tight rounded shadow-md bg-cyan-900 hover:bg-cyan-800 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out mb-3" type="button" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                                    Proceed
+                                </Link>
+                            </div> : <div className='text-center'>
+                                <h1 className='text-3xl mb-5 font-bold'>Waiting for Admin confirmation</h1>
+
+                            </div>
+
+                    }
 
 
                 </div>

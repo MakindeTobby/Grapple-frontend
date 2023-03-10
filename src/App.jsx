@@ -23,6 +23,8 @@ import Login from './Auth/Login';
 import SetupForm from './modules/Doctor/SetupForm';
 import AccountForm from './modules/Doctor/AccountForm';
 import PatientLogin from './Auth/patientLogin';
+import DocProfile from './modules/Doctor/Profile';
+import ThankYou from './modules/Doctor/ThankYou';
 
 function App() {
 
@@ -43,7 +45,6 @@ function App() {
         <Route exact path="/admin" element={<AdminAuth />} />
         <Route exact path="/" element={<Login />} />
         <Route exact path="/patient-login" element={<PatientLogin />} />
-        <Route exact path="/appointmentList" element={<AppointmentList />} />
         <Route exact path="/verifyotp" element={<VerifyOtp />} />
         <Route exact path="/adminDashboard" element={<AdminDashboard />} />
         <Route exact path="/submit" element={<Submit />} />
@@ -53,6 +54,11 @@ function App() {
           <Route element={<Dashboard />} path='dashboard' />
           <Route element={<SetupForm />} path='setup' />
           <Route element={<AccountForm />} path='account-form' />
+          <Route element={<ThankYou />} path='thank-you' />
+          <Route element={<DocProfile />} path='profile' />
+          <Route exact path="/appointmentList" element={<AppointmentList />} />
+
+
 
 
         </Route>

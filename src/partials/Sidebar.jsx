@@ -8,9 +8,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import SidebarLinkGroup from './SidebarLinkGroup';
 import http from '../Auth/Api/http';
+import { useContext } from 'react';
+import { ThemeContext } from '../context';
+import { FaUser, FaUsers } from 'react-icons/fa';
 
 function Sidebar({ sidebarOpen, setSidebarOpen, user }) {
 
+  const { docUser } = useContext(ThemeContext)
 
   const trigger = useRef(null);
   const sidebar = useRef(null);
@@ -178,6 +182,21 @@ function Sidebar({ sidebarOpen, setSidebarOpen, user }) {
 
 
 
+              {/* Profile */}
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('profile') && 'bg-slate-900'}`}>
+                <NavLink
+                  end
+                  to={docUser.Status === 0 ? "/dashboard" : "/profile"}
+                  className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('profile') && 'hover:text-slate-200'
+                    }`}
+                >
+                  <div className="flex items-center">
+                    <FaUsers className="shrink-0 h-8 w-6" />
+                    <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                      Profile </span>
+                  </div>
+                </NavLink>
+              </li>
               {/* Apointment List */}
               <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('inbox') && 'bg-slate-900'}`}>
                 <NavLink

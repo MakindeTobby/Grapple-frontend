@@ -12,14 +12,14 @@ const VerifyOtp = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const [timeLeft, setTimeLeft] = useState(
-        Number(sessionStorage.getItem('remainingTime')) || 600
+        Number(localStorage.getItem('remainingTime')) || 600
     );
 
     useEffect(() => {
         const countdownTimer = setInterval(() => {
             setTimeLeft(prevTime => {
                 const newTime = prevTime - 1;
-                sessionStorage.setItem('remainingTime', newTime.toString());
+                localStorage.setItem('remainingTime', newTime.toString());
                 return newTime;
             });
         }, 1000);
@@ -29,7 +29,7 @@ const VerifyOtp = () => {
 
     useEffect(() => {
         if (timeLeft === 0) {
-            sessionStorage.removeItem('remainingTime');
+            localStorage.removeItem('remainingTime');
         }
     }, [timeLeft]);
 
@@ -55,6 +55,9 @@ const VerifyOtp = () => {
     };
 
     const email = localStorage.getItem("email")
+    if (!email) {
+        navigate("/")
+    }
     const handleSubmit = async (event) => {
 
         const postData = {
@@ -83,6 +86,21 @@ const VerifyOtp = () => {
 
     }
 
+    const resendCode = async () => {
+        try {
+            const { data } = await http.post("/verify-otp", { Email: email });
+            toast.success(data.message)
+            navigate("/")
+            setLoading(false)
+
+        } catch (error) {
+            toast.error(error.response.data.message)
+            setLoading(false)
+        }
+
+    }
+
+
     return (
 
         <>
@@ -94,7 +112,7 @@ const VerifyOtp = () => {
                     <div className="-mx-4 flex">
                         <div className="w-full px-4">
                             <div className="mx-auto max-w-[80%] text-center">
-                                <h2 className="mb-4 text-[20px] font-bold leading-none text-blue-900 sm:text-[60px] md:text-[50px]">
+                                <h2 className="mb-4 text-[20px] font-bold leading-none text-cyan-700 sm:text-[60px] md:text-[50px]">
                                     Check your email for a code
                                 </h2>
                                 <h4 className="mb-4 text-[13px] font-semibold leading-tight text-black">
@@ -123,7 +141,7 @@ const VerifyOtp = () => {
                                 <div className="flex flex-col gap-4 pt-4 justify-center items-center">
 
 
-                                    <button type="button" className="bg-blue-900 block rounded-md  items-center 
+                                    <button type="button" className="bg-cyan-700 block rounded-md  items-center 
                                 justify-center py-4 px-10 text-center text-base font-normal text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
                                         onClick={handleSubmit}
                                         disabled={loading ? true : false}
@@ -134,14 +152,16 @@ const VerifyOtp = () => {
                                         </svg> : "Verify OTP"}
                                     </button>
 
-                                    <button className="bg-white  rounded-md inline-flex items-center 
-                                justify-center py-4 px-10 text-center text-base font-normal hover:bg-opacity-90 lg:px-8 xl:px-10"
+                                    <button
                                         onClick={e => setOtp([...otp.map(v => "")])}
                                     >Clear Input</button>
 
                                 </div>
                                 <p className="mt-8 text-lg text-slate-800">
-                                    Can't find your code? Check your spam folder.
+                                    Can't find your code? Check your spam folder or
+                                    <button className="text-cyan-700"
+                                        onClick={resendCode}
+                                    >Resend code</button>
                                 </p>
 
                             </div>

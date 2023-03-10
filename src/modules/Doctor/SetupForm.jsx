@@ -32,7 +32,7 @@ const SetupForm = () => {
             const { data } = await http.post('/uploadDoctorDocument', formData)
             console.log(data);
             toast.success(data.message)
-            navigate("/dashboard")
+            navigate("/thank-you")
             setLoading(false)
 
         } catch (error) {

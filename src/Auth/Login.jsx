@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 const Login = () => {
     let navigate = useNavigate()
     const [email, setEmail] = useState('makindetobiloba9@gmail.com');
-    const [password, setPassword] = useState('08106067323');
+    const [password, setPassword] = useState('1234567');
     const [checked, setChecked] = useState(false)
     const [loading, setLoading] = useState(false)
     let errorsObj = { email: '', password: '' };
@@ -27,7 +27,7 @@ const Login = () => {
 
     useEffect(() => {
         if (userD) {
-            navigate("/dashboard")
+            // navigate("/dashboard")
         }
     }, [])
     // const user = {
@@ -59,16 +59,27 @@ const Login = () => {
             const { data } = await http.post('/login', newLogin)
             console.log(data);
             if (data.errors) {
-                console.log(data.errors);
+                console.log(data?.errors);
                 toast.success("Login Failed")
 
-            } else {
+            } else if (data.message === "Email not verified") {
+                toast.error(data.message)
+                localStorage.setItem("email", data?.email)
+                navigate("/verifyotp")
+
+            }
+
+            else {
                 window.location = "/dashboard"
                 toast.success("Login Successful")
-                localStorage.setItem("jwt", data.token)
+                localStorage.setItem("jwt", data?.token)
             }
         } catch (error) {
-            return toast.error(error.response.data);
+
+            toast.error(error.response?.data);
+            toast.error(error.response?.message);
+
+            console.log(error);
         }
         finally {
             setLoading(false)
@@ -87,7 +98,7 @@ const Login = () => {
 
                             <div className="lg:flex lg:flex-wrap g-0">
 
-                                <div className="lg:w-6/12 flex items-center bg-[#F1F0FF] sm:bg-none">
+                                <div className="lg:w-6/12 flex items-center bg-cyan-50 sm:bg-none">
                                     <div className="flex  w-full justify-center xl:block lg:block md:hidden xs:hidden sm:hidden">
                                         <img src="/images/health-insurance.png" alt="health-insurance" width={'100%'} height={'100%'} />
                                     </div>
