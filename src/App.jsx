@@ -22,9 +22,11 @@ import Submit from './components/Submit';
 import Login from './Auth/Login';
 import SetupForm from './modules/Doctor/SetupForm';
 import AccountForm from './modules/Doctor/AccountForm';
-import PatientLogin from './Auth/patientLogin';
 import DocProfile from './modules/Doctor/Profile';
 import ThankYou from './modules/Doctor/ThankYou';
+import Schedule from './modules/Doctor/Schedule';
+import Service from './modules/Doctor/Service';
+import { CreditCardForm } from './Auth/Creditcard';
 
 function App() {
 
@@ -44,10 +46,10 @@ function App() {
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/admin" element={<AdminAuth />} />
         <Route exact path="/" element={<Login />} />
-        <Route exact path="/patient-login" element={<PatientLogin />} />
         <Route exact path="/verifyotp" element={<VerifyOtp />} />
         <Route exact path="/adminDashboard" element={<AdminDashboard />} />
         <Route exact path="/submit" element={<Submit />} />
+        <Route exact path="/card" element={<CreditCardForm />} />
         <Route exact path="*" element={<NotFound />} />
 
         <Route element={<PrivateRoutes />}>
@@ -56,6 +58,9 @@ function App() {
           <Route element={<AccountForm />} path='account-form' />
           <Route element={<ThankYou />} path='thank-you' />
           <Route element={<DocProfile />} path='profile' />
+          <Route element={<Schedule />} path='schedule' />
+          <Route element={<Service />} path='service' />
+
           <Route exact path="/appointmentList" element={<AppointmentList />} />
 
 

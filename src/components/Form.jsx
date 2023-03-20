@@ -13,25 +13,7 @@ const Form = ({ email, setEmail, password, setPassword, handleLogin, checked, se
         <div className="md:p-16  md:mx-6">
 
             <form >
-                <div className="flex justify-between mb-4">
-                    {/* <select name="lang" className="border border-gray-300 rounded w-32 outline-none text-xs px-2 py-1">
-                    <option value="" hidden>English (US)</option></select> */}
-                    <NavLink to={'/'} className={`${current === "/" && "color"} bg-cyan-500 hover:bg-red-500 hover:border-red-700 border-cyan-700  text-white font-bold py-2 px-4 border-b-4  rounded`}>
-                        Doctor
-                    </NavLink>
 
-                    <NavLink to={'/patient-login'} className={`${current === "/patient-login" && "color"} bg-cyan-500 hover:bg-red-500 hover:border-red-700 border-cyan-700  text-white font-bold py-2 px-4 border-b-4  rounded`}>
-                        Patient
-                    </NavLink>
-                    <button className="bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 border-b-4 border-cyan-700 hover:border-cyan-500 rounded">
-                        Pharm
-                    </button>
-                    <button className="bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 border-b-4 border-cyan-700 hover:border-cyan-500 rounded">
-                        Health
-                    </button>
-
-
-                </div>
 
 
                 <h4 className="text-xl mb-4 mt-1 pb-1 font-bold"></h4>

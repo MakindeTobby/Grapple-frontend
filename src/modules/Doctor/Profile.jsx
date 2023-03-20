@@ -15,6 +15,11 @@ const DocProfile = () => {
 
         getDoctor()
     }, [])
+    const [activeTab, setActiveTab] = useState("tab1");
+
+    const handleTabClick = (tab) => {
+        setActiveTab(tab);
+    };
     console.log(doctor.SurName);
     return (
         <DocLayout>
@@ -91,72 +96,60 @@ const DocProfile = () => {
                             </div>
                         </div>
 
+                    </div>
+                </div>
 
-                        <div className="w-full max-w-full px-3 lg-max:mt-6 xl:w-4/12 mb-4">
-                            <div className="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
-                                <div className="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
-                                    <h6 className="mb-0">Conversations</h6>
-                                </div>
-                                <div className="flex-auto p-4">
-                                    <ul className="flex flex-col pl-0 mb-0 rounded-lg">
-                                        <li className="relative flex items-center px-0 py-2 mb-2 bg-white border-0 rounded-t-lg text-inherit">
-                                            <div className="inline-flex items-center justify-center w-12 h-12 mr-4 text-white transition-all duration-200 text-size-base ease-soft-in-out rounded-xl">
-                                                <img src="https://demos.creative-tim.com/soft-ui-dashboard-tailwind/assets/img/kal-visuals-square.jpg" alt="kal" className="w-full shadow-soft-2xl rounded-xl" />
-                                            </div>
-                                            <div className="flex flex-col items-start justify-center">
-                                                <h6 className="mb-0 leading-normal text-size-sm">Sophie B.</h6>
-                                                <p className="mb-0 leading-tight text-size-xs">Hi! I need more information..</p>
-                                            </div>
-                                            <a className="inline-block py-3 pl-0 pr-4 mb-0 ml-auto font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-size-xs ease-soft-in hover:scale-102 hover:active:scale-102 active:opacity-85 text-fuchsia-500 hover:text-fuchsia-800 hover:shadow-none active:scale-100" href="javascript:;">Reply</a>
-                                        </li>
-                                        <li className="relative flex items-center px-0 py-2 mb-2 bg-white border-0 border-t-0 text-inherit">
-                                            <div className="inline-flex items-center justify-center w-12 h-12 mr-4 text-white transition-all duration-200 text-size-base ease-soft-in-out rounded-xl">
-                                                <img src="https://demos.creative-tim.com/soft-ui-dashboard-tailwind/assets/img/marie.jpg" alt="kal" className="w-full shadow-soft-2xl rounded-xl" />
-                                            </div>
-                                            <div className="flex flex-col items-start justify-center">
-                                                <h6 className="mb-0 leading-normal text-size-sm">Anne Marie</h6>
-                                                <p className="mb-0 leading-tight text-size-xs">Awesome work, can you..</p>
-                                            </div>
-                                            <a className="inline-block py-3 pl-0 pr-4 mb-0 ml-auto font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-size-xs ease-soft-in hover:scale-102 hover:active:scale-102 active:opacity-85 text-fuchsia-500 hover:text-fuchsia-800 hover:shadow-none active:scale-100" href="javascript:;">Reply</a>
-                                        </li>
-                                        <li className="relative flex items-center px-0 py-2 mb-2 bg-white border-0 border-t-0 text-inherit">
-                                            <div className="inline-flex items-center justify-center w-12 h-12 mr-4 text-white transition-all duration-200 text-size-base ease-soft-in-out rounded-xl">
-                                                <img src="https://demos.creative-tim.com/soft-ui-dashboard-tailwind/assets/img/ivana-square.jpg" alt="kal" className="w-full shadow-soft-2xl rounded-xl" />
-                                            </div>
-                                            <div className="flex flex-col items-start justify-center">
-                                                <h6 className="mb-0 leading-normal text-size-sm">Ivanna</h6>
-                                                <p className="mb-0 leading-tight text-size-xs">About files I can..</p>
-                                            </div>
-                                            <a className="inline-block py-3 pl-0 pr-4 mb-0 ml-auto font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-size-xs ease-soft-in hover:scale-102 hover:active:scale-102 active:opacity-85 text-fuchsia-500 hover:text-fuchsia-800 hover:shadow-none active:scale-100" href="javascript:;">Reply</a>
-                                        </li>
-                                        <li className="relative flex items-center px-0 py-2 mb-2 bg-white border-0 border-t-0 text-inherit">
-                                            <div className="inline-flex items-center justify-center w-12 h-12 mr-4 text-white transition-all duration-200 text-size-base ease-soft-in-out rounded-xl">
-                                                <img src="https://demos.creative-tim.com/soft-ui-dashboard-tailwind/assets/img/team-4.jpg" alt="kal" className="w-full shadow-soft-2xl rounded-xl" />
-                                            </div>
-                                            <div className="flex flex-col items-start justify-center">
-                                                <h6 className="mb-0 leading-normal text-size-sm">Peterson</h6>
-                                                <p className="mb-0 leading-tight text-size-xs">Have a great afternoon..</p>
-                                            </div>
-                                            <a className="inline-block py-3 pl-0 pr-4 mb-0 ml-auto font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-size-xs ease-soft-in hover:scale-102 hover:active:scale-102 active:opacity-85 text-fuchsia-500 hover:text-fuchsia-800 hover:shadow-none active:scale-100" href="javascript:;">Reply</a>
-                                        </li>
-                                        <li className="relative flex items-center px-0 py-2 bg-white border-0 border-t-0 rounded-b-lg text-inherit">
-                                            <div className="inline-flex items-center justify-center w-12 h-12 mr-4 text-white transition-all duration-200 text-size-base ease-soft-in-out rounded-xl">
-                                                <img src="https://demos.creative-tim.com/soft-ui-dashboard-tailwind/assets/img/team-3.jpg" alt="kal" className="w-full shadow-soft-2xl rounded-xl" />
-                                            </div>
-                                            <div className="flex flex-col items-start justify-center">
-                                                <h6 className="mb-0 leading-normal text-size-sm">Nick Daniel</h6>
-                                                <p className="mb-0 leading-tight text-size-xs">Hi! I need more information..</p>
-                                            </div>
-                                            <a className="inline-block py-3 pl-0 pr-4 mb-0 ml-auto font-bold text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-pro text-size-xs ease-soft-in hover:scale-102 hover:active:scale-102 active:opacity-85 text-fuchsia-500 hover:text-fuchsia-800 hover:shadow-none active:scale-100" href="javascript:;">Reply</a>
-                                        </li>
-                                    </ul>
-                                </div>
+
+                <div className="flex flex-col justify-center items-center pt-2 mb-5">
+                    <div className="w-full md:w-3/5 lg:w-full bg-white rounded-lg shadow-md">
+                        {/* Tab navigation */}
+                        <div className="flex border-b">
+                            <div
+                                className={`cursor-pointer py-3 px-4 ${activeTab === "tab1" ? "bg-gray-200" : ""
+                                    }`}
+                                onClick={() => handleTabClick("tab1")}
+                            >
+                                Tab 1
                             </div>
+                            <div
+                                className={`cursor-pointer py-3 px-4 ${activeTab === "tab2" ? "bg-gray-200" : ""
+                                    }`}
+                                onClick={() => handleTabClick("tab2")}
+                            >
+                                Tab 2
+                            </div>
+                            <div
+                                className={`cursor-pointer py-3 px-4 ${activeTab === "tab3" ? "bg-gray-200" : ""
+                                    }`}
+                                onClick={() => handleTabClick("tab3")}
+                            >
+                                Tab 3
+                            </div>
+                        </div>
+                        {/* Tab content */}
+                        <div className="p-4">
+                            {activeTab === "tab1" && (
+                                <div>
+                                    <h1 className="text-lg font-bold mb-2">Tab 1 Content</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </div>
+                            )}
+                            {activeTab === "tab2" && (
+                                <div>
+                                    <h1 className="text-lg font-bold mb-2">Tab 2 Content</h1>
+                                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            )}
+                            {activeTab === "tab3" && (
+                                <div>
+                                    <h1 className="text-lg font-bold mb-2">Tab 3 Content</h1>
+                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
-
         </DocLayout>
     );
 }

@@ -122,7 +122,7 @@ const Register = () => {
 
                         </div>
 
-                        {/* <Autophone /> */}
+
 
                         <div className="relative mb-4">
                             <input type="password" id="floating_outlined"
@@ -173,6 +173,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     );
 }

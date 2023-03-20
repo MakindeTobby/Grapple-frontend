@@ -8,6 +8,8 @@ if (localStorage.jwt) {
   setAuthToken(jwt)
   logUser = jwtDecode(jwt)
 }
+
+
 const ThemeContext = createContext(null);
 export { ThemeContext }
 

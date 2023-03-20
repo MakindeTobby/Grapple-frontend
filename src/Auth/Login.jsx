@@ -78,8 +78,6 @@ const Login = () => {
 
             toast.error(error.response?.data);
             toast.error(error.response?.message);
-
-            console.log(error);
         }
         finally {
             setLoading(false)
